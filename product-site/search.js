@@ -59,9 +59,14 @@ async function search(source, knownId, gallery) {
         const norm = Math.hypot(...vector) || 1;
         const ranked = gallery.map(item => ({
             item, score: item.vector.reduce((total, x, i) => total + x * vector[i], 0) / norm
-        })).sort((a, b) => b.score - a.score).slice(0, 6);
-        get("results").replaceChildren(...ranked.map(({item}) => card(item, item.id === knownId)));
-        get("status").textContent = `Six matches · encoding and search ${Math.round(performance.now() - started)} ms`;
+        })).sort((a, b) => b.score - a.score);
+        const unique = new Map();
+        for (const {item} of ranked) {
+            if (!unique.has(item.id)) unique.set(item.id, item);
+        }
+        const products = [...unique.values()].slice(0, 4);
+        get("results").replaceChildren(...products.map(item => card(item, item.id === knownId)));
+        get("status").textContent = `${products.length} similar catalog products · encoding and search ${Math.round(performance.now() - started)} ms`;
     } catch (error) {
         if (request === token) get("status").textContent = "Search failed. Try another image or reload the demo.";
         console.error(error);

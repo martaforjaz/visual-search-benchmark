@@ -36,7 +36,7 @@ fetch("comparison.json").then(response => {
         column.append(title, grid);
         element("compare-models").append(column);
     }
-    element("compare-note").textContent = "Recorded exact rankings from both encoders over the same illustrated gallery.";
+    element("compare-note").textContent = "Recorded image rankings. Each product has multiple views, so it can appear more than once here.";
 }).catch(() => {
     document.getElementById("compare-note").textContent = "Could not load the recorded rankings.";
 });
