@@ -20,3 +20,13 @@ axes[1].legend(frameon=False)
 for ax in axes:
     ax.spines[["top", "right"]].set_visible(False)
 fig.savefig(root / "product-site" / "benchmark.png", dpi=180)
+
+fig, ax = plt.subplots(figsize=(6.5, 3.2), layout="constrained")
+for method, color, marker in [("exact","#244e79","D"),("kd-tree","#ab6433","s"),("hnsw","#439387","o")]:
+    row = next(r for r in data["indexes"] if r["method"] == method and r["size"] == 1200)
+    ax.scatter(row["p95_ms"], 100*row.get("neighbor_recall", 1), label=method, color=color, marker=marker, s=60)
+ax.set(xlabel="Search p95 (ms)", ylabel="Recall@10 vs exact (%)", ylim=(97,100.5), xlim=(.009,.059))
+ax.spines[["top","right"]].set_visible(False)
+ax.grid(alpha=.17)
+ax.legend(frameon=False, loc="lower left")
+fig.savefig(root / "product-site" / "recall-latency.png", dpi=180)

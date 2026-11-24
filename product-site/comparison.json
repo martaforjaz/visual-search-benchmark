@@ -1,0 +1,49 @@
+{
+  "query": {
+    "label": "Amber speaker",
+    "image": "comparison-query.png",
+    "condition": "Rotated, blurred, reduced saturation"
+  },
+  "methods": [
+    {
+      "name": "MobileNetV3-Small",
+      "matches": [
+        {
+          "label": "Slate speaker",
+          "image": "object-1-2.png",
+          "correct": false
+        },
+        {
+          "label": "Slate speaker",
+          "image": "object-1-1.png",
+          "correct": false
+        },
+        {
+          "label": "Slate speaker",
+          "image": "object-1-0.png",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "name": "CLIP ViT-B/32",
+      "matches": [
+        {
+          "label": "Slate speaker",
+          "image": "object-1-1.png",
+          "correct": false
+        },
+        {
+          "label": "Amber speaker",
+          "image": "object-0-1.png",
+          "correct": true
+        },
+        {
+          "label": "Amber speaker",
+          "image": "object-0-2.png",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}

@@ -3,12 +3,22 @@
 <title>Visual Product Search</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#eff4fa;color:#142d50;font:16px/1.5 system-ui,sans-serif}main{max-width:1050px;padding:40px 20px;margin:auto}h1{font-size:clamp(2.25rem,5vw,4rem);line-height:1.04;margin:22px 0 8px;letter-spacing:-.045em}a{color:#225687}section{border:1px solid #d5e0eb;background:white;border-radius:14px;padding:20px;margin:18px 0}.grid{display:flex;gap:12px;flex-wrap:wrap}button,figure{width:118px;border:1px solid #bacbe0;border-radius:8px;background:#f5f8fc;color:inherit;padding:6px;margin:0;text-align:center;font:inherit;font-size:.84rem}button{cursor:pointer}img{max-width:100%;display:block;border-radius:5px}.hit{border:2px solid #267b69}.hit small{display:block;color:#185d50}label{display:block;margin-top:18px}input{margin-left:5px;max-width:100%}
+.comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.comparison figure{width:min(100%,105px)}.comparison figcaption small{font-weight:700}.wrong{border-color:#a45b36}.query-example{display:flex;gap:14px;align-items:center;margin-bottom:12px}.query-example img{width:92px}@media(max-width:640px){.comparison{grid-template-columns:1fr}}
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/ort.min.js"></script>
-<script defer src="search.js"></script></head>
+<script defer src="search.js"></script><script defer src="comparison.js"></script></head>
 <body><main><a href="../#visual-search">Marta Forjaz · Portfolio</a>
 <h1>Visual Product Search</h1><p>Search a small illustrated catalog with a product sample or your own photo. Images are processed in your browser.</p>
 <section><h2>Query</h2><div id="samples" class="grid"></div><label>Upload a query <input id="upload" type="file" accept="image/*"></label><p id="status" role="status">Loading catalog…</p><img id="query" width="112" height="112" alt="Current query" hidden></section>
 <section><h2>Ranked results</h2><div id="results" class="grid"></div></section>
+<section aria-labelledby="compare-heading">
+<h2 id="compare-heading">One query, two models</h2>
+<div id="compare-query" class="query-example"></div>
+<div id="compare-models" class="comparison"></div>
+<p id="compare-note" role="status"></p>
+<h3>Recall versus latency</h3>
+<img src="recall-latency.png" alt="Recall at 10 versus p95 latency for exact, projected KD-tree and HNSW on 1,200 COIL-100 images">
+<p>Separate benchmark on COIL-100 with fixed MobileNet embeddings. Recall measures overlap with the exact top ten.</p>
+</section>
 <section><h2>Benchmark</h2><img src="benchmark.png" alt="Same-object retrieval and index latency on COIL-100"><p>The public demo uses original illustrations. Encoder and index measurements use held-out real photographs in COIL-100.</p><a href="https://github.com/martaforjaz/visual-search-benchmark#product-search">Methods and results</a> · <a href="../visual-search/">Fashion-MNIST benchmark</a></section>
 </main></body></html>

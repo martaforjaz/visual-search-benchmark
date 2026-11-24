@@ -58,3 +58,10 @@ python -m http.server 8779 --directory product-site
 ```
 
 Run python catalog_api.py to start the local API. The browser demo loads ONNX Runtime Web; it uses a local ONNX model exported from [Torchvision MobileNetV3-Small](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v3_small.html).
+### One query, two models
+
+![Recorded MobileNet and CLIP rankings for a difficult speaker query](figures/product-comparison.png)
+
+Both encoders ranked a slate speaker first when given the altered amber-speaker illustration. CLIP recovered the correct product at ranks 2 and 3. MobileNet returned three views of the wrong product. Green outlines mark the correct product. The example was selected from 32 original and transformed queries for its same-category mismatch.
+
+[See the side-by-side comparison](https://martaforjaz.github.io/product-search/#compare-heading). It shows recorded exact rankings on the illustrated catalog. The graph underneath uses the separate COIL-100 experiment to isolate index recall and latency at 1,200 images. Run python compare_demo.py after building the browser catalog to regenerate the comparison.
