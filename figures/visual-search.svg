@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 220" role="img" aria-label="Image retrieval clusters and search lens">
+<rect width="800" height="220" fill="#142d50"/>
+<g fill="#234a6e" stroke="#a7c4dd" stroke-width="3"><rect x="205" y="57" width="126" height="104" rx="10"/><path d="m221 143 31-39 22 21 14-14 27 32z"/><circle cx="297" cy="85" r="9"/><circle cx="409" cy="105" r="41"/><path d="m439 135 34 34" stroke-width="8" stroke-linecap="round"/></g>
+<g fill="#f1ba75"><circle cx="401" cy="94" r="5"/><circle cx="419" cy="104" r="5"/><circle cx="404" cy="118" r="5"/></g>
+<g fill="#a7c4dd"><circle cx="535" cy="73" r="7"/><circle cx="563" cy="86" r="7"/><circle cx="545" cy="102" r="7"/><circle cx="580" cy="136" r="7"/><circle cx="601" cy="148" r="7"/><circle cx="566" cy="158" r="7"/></g>
+</svg>

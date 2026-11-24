@@ -1,0 +1,98 @@
+[
+  {
+    "size": 1000,
+    "candidates": 0,
+    "recall": 1,
+    "precision": 0.6687,
+    "p95_ms": 0.0313,
+    "index_bytes": 2304000
+  },
+  {
+    "size": 1000,
+    "candidates": 32,
+    "recall": 0.6643,
+    "precision": 0.6383,
+    "p95_ms": 0.0333,
+    "index_bytes": 2486622
+  },
+  {
+    "size": 1000,
+    "candidates": 128,
+    "recall": 0.8927,
+    "precision": 0.6647,
+    "p95_ms": 0.0493,
+    "index_bytes": 2486622
+  },
+  {
+    "size": 1000,
+    "candidates": 512,
+    "recall": 0.9943,
+    "precision": 0.668,
+    "p95_ms": 0.3792,
+    "index_bytes": 2486622
+  },
+  {
+    "size": 5000,
+    "candidates": 0,
+    "recall": 1,
+    "precision": 0.748,
+    "p95_ms": 0.2388,
+    "index_bytes": 11520000
+  },
+  {
+    "size": 5000,
+    "candidates": 32,
+    "recall": 0.5317,
+    "precision": 0.7077,
+    "p95_ms": 0.0827,
+    "index_bytes": 12311145
+  },
+  {
+    "size": 5000,
+    "candidates": 128,
+    "recall": 0.7963,
+    "precision": 0.7373,
+    "p95_ms": 0.1068,
+    "index_bytes": 12311145
+  },
+  {
+    "size": 5000,
+    "candidates": 512,
+    "recall": 0.9477,
+    "precision": 0.75,
+    "p95_ms": 0.4826,
+    "index_bytes": 12311145
+  },
+  {
+    "size": 12000,
+    "candidates": 0,
+    "recall": 1,
+    "precision": 0.7817,
+    "p95_ms": 0.8675,
+    "index_bytes": 27648000
+  },
+  {
+    "size": 12000,
+    "candidates": 32,
+    "recall": 0.4873,
+    "precision": 0.7237,
+    "p95_ms": 0.1631,
+    "index_bytes": 29464882
+  },
+  {
+    "size": 12000,
+    "candidates": 128,
+    "recall": 0.75,
+    "precision": 0.7593,
+    "p95_ms": 0.1964,
+    "index_bytes": 29464882
+  },
+  {
+    "size": 12000,
+    "candidates": 512,
+    "recall": 0.9027,
+    "precision": 0.7793,
+    "p95_ms": 0.7673,
+    "index_bytes": 29464882
+  }
+]

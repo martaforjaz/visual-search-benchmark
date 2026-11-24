@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visual Search Benchmark</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f5fa;color:#142d50;font:16px/1.5 system-ui,sans-serif}main{max-width:1080px;margin:auto;padding:35px 20px}h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.08;margin-bottom:.4em}a{color:#215689}.panel{background:white;border:1px solid #d8e2ee;border-radius:14px;padding:20px;margin:18px 0}.examples,.matches{display:flex;gap:12px;flex-wrap:wrap}.tile{width:90px;text-align:center;font-size:.85rem}.tile img{display:block;width:68px;height:68px;image-rendering:pixelated;margin:0 auto 5px;border-radius:5px}.tile small{color:#a14a27}button,select,input{font:inherit}button,select{background:#edf3fa;color:inherit;border:1px solid #aac0d4;border-radius:7px;padding:6px;cursor:pointer}button[aria-pressed=true]{outline:2px solid #315c8b}#plot{width:min(100%,760px);display:block;margin:auto}.metric{font-variant-numeric:tabular-nums}label{display:inline-block;margin:0 1em .6em 0}
+</style>
+<script src="results.js" defer></script><script src="demo.js" defer></script>
+</head>
+<body><main>
+<a href="https://martaforjaz.github.io/#visual-search">Marta Forjaz · Portfolio</a>
+<h1>Visual Search Benchmark</h1><p>Compare exact and approximate image retrieval on Fashion-MNIST.</p>
+<section class="panel"><h2>Try a held-out image</h2><p>Choose a query, then switch methods. Different class labels are marked below.</p>
+<div id="examples" class="examples"></div>
+<label>Method <select id="method"><option value="matches">Exact cosine</option><option value="approximate">Projected KD-tree · 512 candidates</option></select></label>
+<p id="match-summary" role="status"></p><div id="matches" class="matches"></div>
+<form hidden id="upload"><label>Search with your own image <input id="image" type="file" accept="image/*" required></label><button>Search exact index</button></form>
+</section>
+<section class="panel"><h2>Recall versus latency</h2><img id="plot" src="recall-latency.png" alt="Recall at 10 versus p95 latency at three gallery sizes">
+<label>Gallery size <select id="size"><option>1000</option><option>5000</option><option selected>12000</option></select></label>
+<label>Candidate count <select id="count"><option value="0">Exact</option><option>32</option><option>128</option><option selected>512</option></select></label>
+<p id="metrics" class="metric" role="status"></p>
+</section><p>Sample images from <a href="https://github.com/zalandoresearch/fashion-mnist">Zalando Research Fashion-MNIST</a>. <a href="https://github.com/martaforjaz/visual-search-benchmark">Code and methodology</a>.</p>
+</main></body></html>
