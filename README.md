@@ -28,3 +28,33 @@ python serve.py
 Open http://127.0.0.1:8777 to upload an image. Inputs are converted to 28×28 grayscale to match the dataset. The hosted demo uses saved results. The benchmark writes [results.json](results.json) and asserts at least **0.88 Recall@10** and at most a **3-point same-class precision drop** at 12,000 images with 512 candidates. GitHub Actions runs the benchmark on CPU.
 
 Data and thumbnails are from [Zalando Research Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist). Pretrained weights are from [Torchvision](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v3_small.html).
+
+## Product search
+
+[Open the live product search](https://martaforjaz.github.io/product-search/). Select a held-out illustration or upload a photo to run MobileNetV3 and exact cosine ranking directly in the browser. The gallery has 24 views of eight original illustrated products, and known matches are marked for sample queries. The uploaded image stays in the browser. This small catalog demonstrates the interaction; it is separate from the real-image benchmark.
+
+![Same-object retrieval and index latency on COIL-100](product-site/benchmark.png)
+
+### Real-image evaluation
+
+We used [Columbia COIL-100](https://www.cs.columbia.edu/CAVE/software/softlib/coil-100.php) because it supplies known object identities and controlled viewpoints. Of 7,200 photographs, 600 held-out views were searched against nested 300, 600 and 1,200-image galleries. An additional comparison used 1,300 queries from the opposite angular sector. In that harder split, MobileNetV3-Small achieved **94.46% Hit@1 and 98.54% Hit@10**, while CLIP ViT-B/32 achieved **86.46% and 92.08%**. Each metric checks whether at least one result belongs to the same physical object. The controlled studio background limits what these results say about consumer photos.
+
+With MobileNet embeddings fixed and the gallery at 1,200 images, exact Faiss search took **0.0519 ms p95**, projected KD-tree took **0.0501 ms**, and HNSW took **0.0171 ms**. HNSW recovered **99.97%** of exact top-10 neighbors and the KD-tree recovered **97.78%**. All three found the correct object in their top ten for every interleaved query at that size. These single-threaded local query measurements exclude encoding. [Raw benchmark](catalog-results.json).
+
+### Local catalog API
+
+The loopback API supports binary image uploads to POST /search and idempotent writes to POST /products/{product}/views/{view}. SQLite holds vectors across restarts; each committed write publishes a rebuilt in-memory exact-search snapshot. The test sends 40 searches without writes and 40 while inserting ten views. End-to-end p95 was **24.78 ms** and **19.82 ms** respectively in this run. The lower number under updates is descriptive and should not be interpreted as a speedup. Encoding p95 was **22.31 ms** and **17.55 ms**. The test also verified that 12 concurrent identical writes created one row, a conflicting payload returned HTTP 409, and the inserted view remained searchable after reopening the service. [Raw load results](catalog-load.json).
+
+### Reproduce product search
+
+Install the main requirements and requirements-catalog.txt after PyTorch. Download the official COIL-100 processed archive to cache/coil100.zip. No original COIL images are committed.
+
+```sh
+python catalog_benchmark.py
+python catalog_load.py
+python build_product_demo.py
+python plot_catalog.py
+python -m http.server 8779 --directory product-site
+```
+
+Run python catalog_api.py to start the local API. The browser demo loads ONNX Runtime Web; it uses a local ONNX model exported from [Torchvision MobileNetV3-Small](https://docs.pytorch.org/vision/stable/models/generated/torchvision.models.mobilenet_v3_small.html).

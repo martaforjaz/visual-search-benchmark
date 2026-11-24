@@ -1,0 +1,80 @@
+{
+  "dataset": "COIL-100",
+  "queries": 600,
+  "encoders": {
+    "mobilenet": {
+      "hit_at_1": 1.0,
+      "hit_at_10": 1.0,
+      "opposite_view_hit_at_1": 0.9446153846153846,
+      "opposite_view_hit_at_10": 0.9853846153846154
+    },
+    "clip": {
+      "hit_at_1": 0.9983333333333333,
+      "hit_at_10": 1.0,
+      "opposite_view_hit_at_1": 0.8646153846153846,
+      "opposite_view_hit_at_10": 0.9207692307692308
+    }
+  },
+  "indexes": [
+    {
+      "size": 300,
+      "method": "exact",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0151
+    },
+    {
+      "size": 300,
+      "method": "kd-tree",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0447,
+      "neighbor_recall": 0.981
+    },
+    {
+      "size": 300,
+      "method": "hnsw",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0141,
+      "neighbor_recall": 0.9997
+    },
+    {
+      "size": 600,
+      "method": "exact",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0266
+    },
+    {
+      "size": 600,
+      "method": "kd-tree",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0626,
+      "neighbor_recall": 0.9698
+    },
+    {
+      "size": 600,
+      "method": "hnsw",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0108,
+      "neighbor_recall": 1.0
+    },
+    {
+      "size": 1200,
+      "method": "exact",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0519
+    },
+    {
+      "size": 1200,
+      "method": "kd-tree",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0501,
+      "neighbor_recall": 0.9778
+    },
+    {
+      "size": 1200,
+      "method": "hnsw",
+      "hit_at_10": 1.0,
+      "p95_ms": 0.0171,
+      "neighbor_recall": 0.9997
+    }
+  ]
+}

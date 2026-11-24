@@ -1,0 +1,16 @@
+{
+  "search_only": {
+    "requests": 40,
+    "http_p95_ms": 24.775,
+    "embedding_p95_ms": 22.308,
+    "index_p95_ms": 0.515
+  },
+  "during_updates": {
+    "requests": 40,
+    "http_p95_ms": 19.818,
+    "embedding_p95_ms": 17.55,
+    "index_p95_ms": 0.508
+  },
+  "duplicate_requests": 12,
+  "restart_verified": true
+}
